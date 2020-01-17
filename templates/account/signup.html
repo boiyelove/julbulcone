@@ -38,26 +38,23 @@
 
         <div class="row">
             <form action="{% url 'account_signup' %}" method="post">
-                        <h3>Register</h3>                        <div class="form-row">
-                            <div class="col-md-6">
-                                
-                                {{ form.first_name|as_crispy_field }}
-                            </div>
-                            <div class="col-md-6">
-                                
-                                {{ form.last_name|as_crispy_field }}
-                            </div>
-                        </div>
+                        <h3>Register</h3>
                         <div class="form-row">
-                            <div class="col-md-6">                                  
-                            
-                            {{ form.date_of_birth|as_crispy_field }}
+                            <div class="col-md-12">
+                                
+                                {{ form.full_name|as_crispy_field }}
                             </div>
                         </div>
                         <div class="form-row">
                              <div class="col-md-12">
                             {{ form.email|as_crispy_field }}
                         </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">                                  
+                            
+                            {{ form.username|as_crispy_field }}
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
@@ -71,9 +68,6 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="form-row">
-                            <Recaptcha>Recatpcha</Recaptcha>
-                        </div>
                         <div class="row text-center">
                             <button class="btn btn-success col-md-6 mx-auto">
                                 Signup

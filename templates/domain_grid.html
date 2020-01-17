@@ -1,0 +1,133 @@
+{% extends 'dashbody.html' %}
+
+
+{% block extrahead %}
+<style type="text/css">
+.add-domain-box{
+	border: 1px solid black;
+	padding: 25%;
+	min-height: 196px;
+}
+
+.domain-col{
+	margin-top:2%;
+	margin-bottom: 2%;
+}
+
+</style>
+{% endblock %}
+
+
+{% block dashbody %}
+ <div class="container">
+ 	<h3 class="text-center">Add Domain</h3>
+ 	<h5 class="text-center">10/10 Slots left</h5>
+ 	<div class="row text-center">
+ 		
+ 		 <div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<div class="row">
+					<button class="btn btn-primary mx-auto btn-plus text-center" onclick="loadModal(this);" data-title='Add Website' data-modalhref="{% url 'add-domain' %}"><i class="fa fa-plus"></i></button>
+				</div>
+				<h5>Add Domain</h5>
+			</div>
+ 		</div>
+
+ 		<div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<h5>Domain 1</h5>
+			</div>
+ 		</div>
+ 		 		<div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<h5>Domain 1</h5>
+			</div>
+ 		</div>
+ 		 		<div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<h5>Domain 1</h5>
+			</div>
+ 		</div>
+ 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<h5>Domain 1</h5>
+			</div>
+ 		</div>
+ 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<h5>Domain 1</h5>
+			</div>
+ 		</div>
+ 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<h5>Domain 1</h5>
+			</div>
+ 		</div>
+ 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
+			<div class="add-domain-box">
+				<h5>Domain 1</h5>
+			</div>
+ 		</div>
+ </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="julbul-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 3%;">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block extra_js %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+function loadModal(ele){
+	$('#julbul-modal').modal('show');
+	$('#julbul-modal').find('.modal-title').text($(ele).data('title'));
+	axios.get($(ele).data('modalhref'),
+					).then(function(response){
+					$('#julbul-modal').find('.modal-body').html(response.data)
+					console.log('response is', response);
+					})
+					.catch(function (error){
+					$('#julbul-modal').find('.modal-body').html(response.data)
+						console.log('error is', error);
+					});
+}
+ $('#julbul-modal').on('shown.bs.modal', function(event){
+ 	modal = $(this);
+ 	modal.find('.modal-body').html("<i class='fa fa-spinner fa-pulse fa-5x'></i>")
+}); 
+
+function sumbitToAjax(ele){
+		event.preventDefault();
+		formdata  = new FormData($(this));
+		console.log(formdata)
+		// url = $(e.currenttarget).action;
+}
+
+// $(document).on('change', function(){
+// 	$('.ajax-submit').on('submit', function(e){
+// 	});
+// });
+	
+</script>
+{% endblock %}

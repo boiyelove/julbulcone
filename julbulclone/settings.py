@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'allauth',
     'allauth.account',
-    'subscriptions.apps.SubscriptionsConfig'
+    'accounts.apps.AccountsConfig',
+    'subscriptions.apps.SubscriptionsConfig',
+    'integrations.apps.IntegrationsConfig',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'julbulclone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,9 +133,9 @@ SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # AUTH_USER_MODEL = "profiles.MatchUser"
 
-# ACCOUNT_FORMS = {
-#     'signup': 'profiles.forms.RegistrationForm'
-# }
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.SignUpForm'
+}
 
 # ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True

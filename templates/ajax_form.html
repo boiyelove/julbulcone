@@ -1,0 +1,31 @@
+{% load crispy_forms_tags %}
+
+
+
+    <div class="container">
+       
+                    {% if form.errors %}
+       
+                   {% for error in form.non_field_errors %}
+                                        <div class="row alert alert-danger" role="alert">
+                                <div class="container">
+                                                       {{ error|escape }}
+                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                            </div>
+                        {% endfor  %}
+            {% endif %}
+
+            <form action="{% url urlname %}" method="post" style="margin:5%;">
+                        <h3>Add Domain</h3>
+                        {{ form|crispy}}
+                        {% csrf_token %}
+                        <div class="row text-center">
+                            <button class="btn btn-success col-md-6" onclick="submitToAjax(this);" data-ajaxUrl="{% url urlname %}">
+                               Add Domain
+                            </button>
+                        </div>
+                    </form>     
+    </div>
