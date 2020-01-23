@@ -25,4 +25,4 @@ urlpatterns = [
     path('', include('subscriptions.urls')),
     path('', include('integrations.urls')),
     path('', include('accounts.urls')),
-] + static(settings.STATIC_URL, document_root=setting.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
