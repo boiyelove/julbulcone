@@ -6,7 +6,12 @@
 .add-domain-box{
 	border: 1px solid black;
 	padding: 25%;
-	min-height: 196px;
+	height: 196px;
+	display: flex;
+	flex-direction: column;
+}
+.add-domain-box:hover{
+	border: 1px solid blue;
 }
 
 .domain-col{
@@ -24,25 +29,25 @@
  	<h5 class="text-center">10/10 Slots left</h5>
  	<div class="row text-center">
  		
- 		 <div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
-				<div class="row">
-					<button class="btn btn-primary mx-auto btn-plus text-center" onclick="loadModal(this);" data-title='Add Website' data-modalhref="{% url 'add-domain' %}"><i class="fa fa-plus"></i></button>
-				</div>
+ 		 <div class="col-md-3 mx-auto text-center domain-col align-items-center">
+			<a class="add-domain-box" href="#" onclick="loadModal(this);" data-title='Add Website' data-modalhref="{% url 'add-domain' %}">
+				
+					<i class="fa fa-plus"></i>
+				<br>
 				<h5>Add Domain</h5>
-			</div>
+			</a>
  		</div>
 
 	{% for website in website_list %}
- 		 		<div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
+ 		 		<div class="col-md-3 mx-auto text-center domain-col align-items-center">
+			<a class="add-domain-box"  href="{% url 'view-domain' website.id %}">
 				<h5>{{website.domain_name}}</h5>
 				{% if website.active %}
 				<div class="badge badge-success">Active</div>
 				{% else %}
 				<div class="badge badge-danger">Inactive</div>
 				{% endif %}
-			</div>
+			</a>
  		</div>
 	{% endfor %}
  		</div>

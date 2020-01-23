@@ -15,3 +15,14 @@ class JUserSubscription(TimeStampedModel):
 	active = models.BooleanField(default=False)
 	end_date = models.DateTimeField(null=True)
 	start_date = models.DateTimeField(null=True)
+
+
+	def activate(self, subscription, months=None):
+		self.subscription = subscription
+		return self.save()
+
+	def deactivate(self):
+		self.subscription, self.end_date, self.start_date = None
+		return self.save()
+
+

@@ -21,7 +21,7 @@
 
         <div class="row">
             <form action="{% url 'add-domain' %}" method="post">
-                        <h3>Add Domain</h3>
+                        <h3>{{ form_title }}</h3>
                         {{ form|crispy}}
                         {% csrf_token %}
                         <div class="row text-center">

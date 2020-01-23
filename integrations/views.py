@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, Http404
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import FormView
-from .models import Integration, IntegrationVerification
+from .models import Integration
 from .forms import DomainForm
 
 # Create your views here.
@@ -20,7 +20,7 @@ class AddDomainFView(SuccessMessageMixin, FormView):
 		print('form is', form)
 		print('request is', self.request.POST)
 		domain = form.cleaned_data.get('domain', None)
-		int_ver = IntegrationVerification.objects.create(domain = domain)
+		int_ver, created = IntegrationVerification.objects.get_or_create(domain = domain)
 		return render(self.request, 'domain_verification.html', {'website_item': int_ver})
 		# return super(AddDomainFView, self).form_valid(form)
 
@@ -48,3 +48,8 @@ def verify_domain(self, request, *args, **kwargs):
 				return JsonResponse({'verified':False})
 		return Http404
 
+class DomainDetailView(DetailView):
+	template_name = 'domain_detail.html'
+	pk_or_slug = 'pk'
+	model =  Integration
+	context_object_name = 'website'

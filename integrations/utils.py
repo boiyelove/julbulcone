@@ -1,7 +1,7 @@
 import faker
 import random
 from django.contrib.auth import get_user_model
-from .models import IntegrationVerification, Integration
+from .models import Integration
 
 fake = faker.Faker()
 User = get_user_model()
