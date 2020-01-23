@@ -12,7 +12,7 @@ class DomainForm(forms.ModelForm):
 		if domain:
 			domain_exist = IntegrationVerification.ppbjects.filter(domain=domain)
 			domain_exist1 = Integration.objects.filter(domain = domain)
-		if domain_exist or domain_exist1:
-			raise forms.ValidationError('Sorry website has already been registered by you or another user')
+			if domain_exist or domain_exist1:
+				raise forms.ValidationError('Sorry website has already been registered by you or another user')
 		return domain
 			

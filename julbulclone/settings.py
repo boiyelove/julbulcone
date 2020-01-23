@@ -137,6 +137,7 @@ ACCOUNT_FORMS = {
     'signup': 'accounts.forms.SignUpForm'
 }
 
+STATIC_ROOT = '/home/boiyelove/webapps/dj_jubulclone/julbulcone/staticfiles/'
 # ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_USERNAME_REQUIRED = False
