@@ -1,0 +1,10 @@
+<div id="ajax-space">
+	<div class="container well">
+		<H6>Add this code to the head section of your website</H6>
+			<textarea name="" class="col-md-12" rows="5" disabled><meta name="julbul-verification" value="{{ website_item.verification_hash }}">
+			</textarea>
+		<br>
+		<a href="{% url 'verify-domain' website_item.id %}" class="btn btn-primary ajax-link mr-auto" data-space="ajax-space">Verify Webiste</a>
+	</div>	
+</div>
+

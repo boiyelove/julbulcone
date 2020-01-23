@@ -1,3 +1,4 @@
+import hashlib
 import domcheck
 from django.db import models
 from django.conf import settings
@@ -6,7 +7,7 @@ from model_utils.models import TimeStampedModel
 
 
 class Integration(TimeStampedModel):
-	domain = models.URLField(unique=True)
+	domain_name = models.CharField(unique=True, max_length=200)
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	active = models.BooleanField(default = False)
 
@@ -18,9 +19,9 @@ class Video(TimeStampedModel):
 	active = models.BooleanField(default = True)
 
 class IntegrationVerification(TimeStampedModel):
-	domain = models.URLField(unique=True)
+	domain_name = models.CharField(unique=True, max_length=200)
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	verification_hash = models.CharField(max_length=160)
+	verification_hash = models.CharField(max_length=258)
 	verfied = models.BooleanField(default=False)
 
 	def verify(self):
@@ -30,4 +31,10 @@ class IntegrationVerification(TimeStampedModel):
 				self.save()
 			return True
 		return False
+
+	def set_hash(self):
+		if self.domain:
+			self.hash = hashlib.sha245('%s %s' % (self.domain, self.user.email))
+
+
 

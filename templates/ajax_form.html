@@ -18,14 +18,14 @@
                         {% endfor  %}
             {% endif %}
 
-            <form action="{% url urlname %}" method="post" style="margin:5%;">
+            <form action="{% url urlname %}" method="post" style="margin:5%;" class='ajax-form'>
                         <h3>Add Domain</h3>
                         {{ form|crispy}}
                         {% csrf_token %}
                         <div class="row text-center">
-                            <button class="btn btn-success col-md-6" onclick="submitToAjax(this);" data-ajaxUrl="{% url urlname %}">
-                               Add Domain
-                            </button>
+                            <input type='submit' class="btn btn-success col-md-6 ajax-form-submit"  data-ajaxUrl="{% url urlname %}" value="Add Domain">
+                               
                         </div>
                     </form>     
     </div>
+    <!-- onclick="submitToAjax(this);" -->

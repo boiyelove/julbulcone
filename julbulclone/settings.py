@@ -131,7 +131,7 @@ STATIC_URL = '/static/'
 SITE_ID = 1
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-# AUTH_USER_MODEL = "profiles.MatchUser"
+AUTH_USER_MODEL = "accounts.JUser"
 
 ACCOUNT_FORMS = {
     'signup': 'accounts.forms.SignUpForm'

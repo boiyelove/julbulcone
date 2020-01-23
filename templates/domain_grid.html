@@ -33,41 +33,20 @@
 			</div>
  		</div>
 
- 		<div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
-				<h5>Domain 1</h5>
-			</div>
- 		</div>
+	{% for website in website_list %}
  		 		<div class="col-md-3 mx-auto text-center domain-col">
 			<div class="add-domain-box">
-				<h5>Domain 1</h5>
+				<h5>{{website.domain_name}}</h5>
+				{% if website.active %}
+				<div class="badge badge-success">Active</div>
+				{% else %}
+				<div class="badge badge-danger">Inactive</div>
+				{% endif %}
 			</div>
  		</div>
- 		 		<div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
-				<h5>Domain 1</h5>
-			</div>
+	{% endfor %}
  		</div>
- 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
-				<h5>Domain 1</h5>
-			</div>
- 		</div>
- 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
-				<h5>Domain 1</h5>
-			</div>
- 		</div>
- 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
-				<h5>Domain 1</h5>
-			</div>
- 		</div>
- 		 		 		<div class="col-md-3 mx-auto text-center domain-col">
-			<div class="add-domain-box">
-				<h5>Domain 1</h5>
-			</div>
- 		</div>
+
  </div>
 
 
@@ -97,7 +76,7 @@
 
 
 {% block extra_js %}
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script type="text/javascript">
 function loadModal(ele){
 	$('#julbul-modal').modal('show');
@@ -105,29 +84,46 @@ function loadModal(ele){
 	axios.get($(ele).data('modalhref'),
 					).then(function(response){
 					$('#julbul-modal').find('.modal-body').html(response.data)
-					console.log('response is', response);
+					// console.log('response is', response);
 					})
 					.catch(function (error){
 					$('#julbul-modal').find('.modal-body').html(response.data)
-						console.log('error is', error);
+						// console.log('error is', error);
 					});
 }
- $('#julbul-modal').on('shown.bs.modal', function(event){
- 	modal = $(this);
- 	modal.find('.modal-body').html("<i class='fa fa-spinner fa-pulse fa-5x'></i>")
-}); 
+//  $('#julbul-modal').on('shown.bs.modal', function(event){
+//  	modal = $(this);
+//  	modal.find('.modal-body').html("<i class='fa fa-spinner fa-pulse fa-5x'></i>")
+// }); 
 
-function sumbitToAjax(ele){
-		event.preventDefault();
-		formdata  = new FormData($(this));
-		console.log(formdata)
-		// url = $(e.currenttarget).action;
-}
+$(document).on('change', function(){
+	// arr = [].slice.call($('.ajax-form'));
+	//https://gle.com
+	$('form.ajax-form').each(function(){
+		$(this).on('submit', function(e){
+			e.preventDefault();
+			console.log('this is ', $(this));
+			formdata  = new FormData($(this)[0]);
+			console.log('form data is', formdata);
+			url = $(this)[0].action;
+			console.log('action is ', url);
+			axios.post(url, formdata)
+			.then(function(response){
+				$('#julbul-modal').find('.modal-body').html(response.data)
+			})
+			.catch(function(error){console.log(error)});
+		});
+		});
 
-// $(document).on('change', function(){
-// 	$('.ajax-submit').on('submit', function(e){
-// 	});
-// });
-	
+	$('.ajax-link').each(function(){
+		$(this).on('click', function(event){
+			event.preventDefault();
+			console.log($(this));
+		});
+	});
+	});
+
+
+
 </script>
 {% endblock %}
