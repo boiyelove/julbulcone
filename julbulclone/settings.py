@@ -25,7 +25,7 @@ SECRET_KEY = 'ph*^d0$(gzi4dq82)#s4sc6qxypj07f#ih^tk+)r5ds29z=gl$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = ['julbul-clone.boiyelove.com', 'localhost:8000', '127.0.0.1:8000']
 
 
 # Application definition
