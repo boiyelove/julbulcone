@@ -125,8 +125,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-
+STATIC_URL = '/static/julbulclone/'
+MEDIA_URL = '/media/julbulclone/'
 
 SITE_ID = 1
 
@@ -137,7 +137,8 @@ ACCOUNT_FORMS = {
     'signup': 'accounts.forms.SignUpForm'
 }
 
-STATIC_ROOT = '/home/boiyelove/webapps/dj_jubulclone/julbulcone/staticfiles/'
+STATIC_ROOT = '/home/boiyelove/webapps/staticfiles/julbulclone'
+MEDIA_ROOT = '/home/boiyelove/webapps/mediafiles/julbulclone'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
