@@ -140,7 +140,7 @@ ACCOUNT_FORMS = {
 STATIC_ROOT = '/home/boiyelove/webapps/staticfiles/julbulclone'
 MEDIA_ROOT = '/home/boiyelove/webapps/mediafiles/julbulclone'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'pstatic'),
 )
 # ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
