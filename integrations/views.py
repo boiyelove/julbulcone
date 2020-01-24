@@ -29,6 +29,7 @@ class AddDomainFView(LoginRequiredMixin, SuccessMessageMixin, FormView):
 	def form_invalid(self, form):
 		print('form is', form)
 		print('request is', self.request.POST)
+		print('errors are', form.errors)
 		return render(self.request, self.template_name, {'form': form})
 
 
@@ -55,4 +56,3 @@ class DomainDetailView(LoginRequiredMixin, DetailView):
 	pk_or_slug = 'pk'
 	model =  Integration
 	context_object_name = 'website'
-	
