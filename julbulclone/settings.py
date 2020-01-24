@@ -25,7 +25,7 @@ SECRET_KEY = 'ph*^d0$(gzi4dq82)#s4sc6qxypj07f#ih^tk+)r5ds29z=gl$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['julbul-clone.boiyelove.com', 'localhost:8000', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['julbul-clone.boiyelove.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -147,5 +147,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-# from django.urls import reverse_lazy
-# LOGIN_REDIRECT_URL = reverse_lazy('question_home')
+from django.urls import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('list-domain')

@@ -4,15 +4,17 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import FormView
+from accounts.views import LoginRequiredMixin
 from .models import Integration
 from .forms import DomainForm
 
+
 # Create your views here.
 
-class AddDomainFView(SuccessMessageMixin, FormView):
+class AddDomainFView(LoginRequiredMixin, SuccessMessageMixin, FormView):
 	form_class = DomainForm
 	template_name = 'ajax_form.html'
-	success_url = 'Your domain name has been added successfully'
+	success_message = 'Your domain name has been added successfully'
 	success_url = reverse_lazy('list-domain')
 	extra_context = {'urlname': 'add-domain'}
 
@@ -31,7 +33,7 @@ class AddDomainFView(SuccessMessageMixin, FormView):
 
 
 
-class DomainListView(ListView):
+class DomainListView(LoginRequiredMixin, ListView):
 	template_name = 'domain_grid.html'
 	context_object_name = 'website_list'
 	
@@ -48,8 +50,9 @@ def verify_domain(self, request, *args, **kwargs):
 				return JsonResponse({'verified':False})
 		return Http404
 
-class DomainDetailView(DetailView):
+class DomainDetailView(LoginRequiredMixin, DetailView):
 	template_name = 'domain_detail.html'
 	pk_or_slug = 'pk'
 	model =  Integration
 	context_object_name = 'website'
+	
