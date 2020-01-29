@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import AddDomainFView, DomainListView, verify_domain, DomainDetailView
+from . import views
 
 urlpatterns = [
-	path('', DomainListView.as_view(), name='' ),
-	path('add_domain/', AddDomainFView.as_view(), name='add-domain' ),
-	path('domains/', DomainListView.as_view(), name='list-domain' ),
-	path('domains/verify/<int:id>/', verify_domain, name='verify-domain' ),
-	path('domains/<int:pk>/', DomainDetailView.as_view(), name='view-domain' ),
+	path('', views.DomainListView.as_view(), name='' ),
+	path('add_domain/', views.add_domain, name='add-domain' ),
+	path('domains/', views.DomainListView.as_view(), name='list-domain' ),
+	path('domains/verify/<int:id>/', views.verify_domain, name='verify-domain' ),
+	path('domains/<int:pk>/', views.DomainDetailView.as_view(), name='view-domain' ),
 ]

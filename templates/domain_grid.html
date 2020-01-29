@@ -26,7 +26,7 @@
 {% block dashbody %}
  <div class="container">
  	<h3 class="text-center">Add Domain</h3>
- 	<h5 class="text-center">10/10 Slots left</h5>
+ 	<h5 class="text-center">{{remaining_slots}}/{{total_domain_count}} Slots left</h5>
  	<div class="row text-center">
  		
  		 <div class="col-md-3 mx-auto text-center domain-col align-items-center">
@@ -114,9 +114,15 @@ $(document).on('change', function(){
 			console.log('action is ', url);
 			axios.post(url, formdata)
 			.then(function(response){
+				console.log('response is', response)
+
 				$('#julbul-modal').find('.modal-body').html(response.data)
 			})
-			.catch(function(error){console.log(error)});
+			.catch(function(error){
+				if (error.response.status == 301){
+					return window.location.href = error.response.data
+				}
+				console.log(error)});
 		});
 		});
 

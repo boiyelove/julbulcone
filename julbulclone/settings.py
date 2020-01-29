@@ -43,8 +43,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'accounts.apps.AccountsConfig',
-    'subscriptions.apps.SubscriptionsConfig',
     'integrations.apps.IntegrationsConfig',
+    'paypal.standard.ipn',
+    'subscriptions.apps.SubscriptionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 from django.urls import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('list-domain')
+
+PAYPAL_RECEIVER_MAIL = 'damilola@boiyelove.com'
+PAYPAL_TEST = True

@@ -15,7 +15,7 @@ class Video(TimeStampedModel):
 class Integration(TimeStampedModel):
 	domain_name = models.CharField(unique=True, max_length=200)
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	verification_hash = models.CharField(max_length=258)
+	verification_hash = models.CharField(max_length=258, default='xasdfdffwertjg')
 	active = models.BooleanField(default = False)
 	verfied = models.BooleanField(default=False)
 

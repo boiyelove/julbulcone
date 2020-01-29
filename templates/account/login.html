@@ -12,8 +12,8 @@
         <h1>{% trans "Sign In" %}</h1>
     </div>
     <div class="row">
-        {% blocktrans %}If you have not created an account yet, then please
-             <a href="{{ signup_url }}"> sign up</a> first.{% endblocktrans %}
+      If you have not created an account yet, then please
+             <a href="{% url 'account-register' %}"> sign up</a> first.
     </div>
     <div class="row">
         
