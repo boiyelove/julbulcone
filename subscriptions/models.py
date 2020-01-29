@@ -14,6 +14,9 @@ class Subscription(TimeStampedModel):
 	# billing_cycle = models.PositiveIntegerField(default=1)
 	# billing_unit = models.CharField(max_length=1, choices=BILLING_UNITS, default='M')
 
+	def __str__(self):
+		return '%s - %s domain(s)' % (self.title, self.domain_limit)
+
 class JUserSubscription(TimeStampedModel):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	subscription = models.ForeignKey('Subscription', null=True, blank=True, on_delete=models.SET_NULL)
@@ -21,6 +24,8 @@ class JUserSubscription(TimeStampedModel):
 	end_date = models.DateTimeField(null=True)
 	start_date = models.DateTimeField(null=True)
 
+	def __str__(self):
+		return '%s subscription' % self.user.email
 
 	def activate(self, subscription, months=None):
 		self.subscription = subscription
