@@ -7,37 +7,24 @@
 {% block dashbody %}
  <div class="container">
  	<h3 class="text-center">Subscriptions</h3>
- 	<div class="row text-center">
- 		{% for sub in subscriptions %}
- 		 <div class="col-md-4">
+ 	<div class="row text-center" style="margin-top:5%;">
+ 		{% for sub in subscriptions %}<br><br>
+ 		 <div class="col-md-4 {% if subscriptions.count == 1 %} mx-auto {% endif %}">
  			<ul class="list-group">
+ 				<form action="{% url 'subscription-view' %}" method="post">
+ 					{% csrf_token %}
+ 					<input type="hidden" value="{{sub.id}}" name="plan">
  				<li class="list-group-item active">{{sub.title|title}}</li>
- 				<li class="list-group-item">{sub.domain_limit} Domain</li>
- 				<li class="list-group-item"><button class="btn btn-primary col-md-6">${{sub.price}}</button></li>
+ 				<li class="list-group-item">{{ sub.domain_limit }} Domain(s)</li>
+ 				<li class="list-group-item"><button class="btn btn-primary col-md-6" type="submit">${{sub.price}}</button></li>
+
+ 				</form>
  			</ul>
  		</div>
- 		<div class="col-md-4">
- 			<ul class="list-group">
- 				<li class="list-group-item active">Standard</li>
- 				<li class="list-group-item">5 Domain</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item"><button class="btn btn-primary col-md-6">$500</button></li>
- 			</ul>
- 		</div>
- 		 		<div class="col-md-4">
- 			<ul class="list-group">
- 				<li class="list-group-item active">Premium</li>
- 				<li class="list-group-item">10 Domain</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item">Feature 1</li>
- 				<li class="list-group-item"><button class="btn btn-primary col-md-6">$500</button></li>
- 			</ul>
- 		</div>
+ 		{% empty %}
+ 				<br>
+ 		 		<h6 class="mx-auto">Subscriptions are currently unavailable</h6>
+		{% endfor %}
  	</div>
  </div>
 {% endblock %}

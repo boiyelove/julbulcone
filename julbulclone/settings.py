@@ -152,5 +152,5 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 from django.urls import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('list-domain')
 
-PAYPAL_RECEIVER_MAIL = 'damilola@boiyelove.com'
+PAYPAL_RECEIVER_EMAIL = 'damilola@boiyelove.com'
 PAYPAL_TEST = True

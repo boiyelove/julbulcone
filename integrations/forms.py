@@ -7,9 +7,9 @@ from .models import Integration
 class DomainForm(forms.Form):
 	domain_name = forms.CharField(max_length=255)
 
-	def __init__(self, user_sub, *args, **kwargs):
+	def __init__(self,  *args, user_sub=None, **kwargs):
 		super(DomainForm, self).__init__(*args, **kwargs)
-		self.user = user_sub
+		self.user_sub = user_sub
 
 	def clean_domain_name(self):
 		domain = self.cleaned_data.get('domain_name')

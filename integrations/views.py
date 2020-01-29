@@ -16,12 +16,12 @@ from .forms import DomainForm
 @login_required
 def add_domain(request):
 	user_sub = JUserSubscription.objects.get(user = request.user )
-	form = DomainForm (request.POST or None, user_sub)
+	form = DomainForm (request.POST or None, user_sub=user_sub)
 	if form.is_valid():
 		integration = form.create_domain(request.user)
 		messages.success(request, 'Website added succesfully')
 		return HttpResponse(reverse_lazy('list-domain'), status=301)
-	return render(request, 'ajax_form.html', {'form':form} )
+	return render(request, 'ajax_form.html', {'form':form, 'urlname': 'add-domain'} )
 
 
 class DomainListView(LoginRequiredMixin, ListView):
