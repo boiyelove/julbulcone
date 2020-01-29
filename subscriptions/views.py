@@ -38,13 +38,14 @@ def process_payment(request):
 	paypal_dict = {
 	"cmd": "x_xclick-subscriptions",
 	'business': settings.PAYPAL_RECEIVER_EMAIL,
-	"a3": sub.price,
+	'amount': sub.price, #"a3": sub.price,
 	"p3": 1, # sub.billing_cycle, # duration of each unit (depends on unit)
 	"t3": 'M', # billing_cycle_unit, # duration unit ("M for Month")
 	"src": "1",  # make payments recur
 	"sra": "1", # reattempt payment on payment error
 	"no_note": "1",
-	"item_name": 'Julbule Clone - %s' % sub.title,
+	'invoice': 'Test Payment Invoice',
+	# "item_name": 'Julbule Clone - %s' % sub.title,
 	'currency_code': 'USD',
 	'notify_url': 'http://{}{}'.format(host, reverse_lazy('paypal-ipn')),
 	'return_url': 'http://{}{}'.format(host, reverse_lazy('payment-done')),

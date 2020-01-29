@@ -22,6 +22,7 @@ class Integration(TimeStampedModel):
 	def __str__(self):
 		return "%s" % self.domain_name
 		
+		
 	def verify(self):
 		if domcheck.check(self.domain, 'julbul-verification', self.code, strategies='meta_tag'):
 			if not self.verified:
